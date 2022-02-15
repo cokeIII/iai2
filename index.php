@@ -11,7 +11,13 @@
 </style>
 
 <body class="bg-grays">
-    <?php require_once "menu.php"; ?>
+    <?php
+    require_once "menu.php";
+    require_once "function.php";
+    $sql_course = "select * from course 
+        where status != 'off'";
+    $res = mysqli_query($conn, $sql_course);
+    ?>
     <div class="container mt-top-menu">
         <div id="carouselExampleIndicators" class="carousel slide mt-5" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -41,34 +47,15 @@
         </div>
         <hr>
         <div class="slider regular demo ">
-            <div class="card wh-card">
-                <img class="card-img-top" src="img/t1.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">รายการอบรม 1</h5>
-                    <a href="#" class="btn btn-primary">รายละเอียด</a>
+            <?php while ($row = mysqli_fetch_array($res)) { ?>
+                <div class="card wh-card">
+                    <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $row["course_name"]; ?></h5>
+                        <a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-primary">รายละเอียด</a>
+                    </div>
                 </div>
-            </div>
-            <div class="card wh-card">
-                <img class="card-img-top" src="img/t1.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">รายการอบรม 2</h5>
-                    <a href="#" class="btn btn-primary">รายละเอียด</a>
-                </div>
-            </div>
-            <div class="card wh-card">
-                <img class="card-img-top" src="img/t1.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">รายการอบรม 3</h5>
-                    <a href="#" class="btn btn-primary">รายละเอียด</a>
-                </div>
-            </div>
-            <div class="card wh-card">
-                <img class="card-img-top" src="img/t1.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">รายการอบรม 4</h5>
-                    <a href="#" class="btn btn-primary">รายละเอียด</a>
-                </div>
-            </div>
+            <?php } ?>
         </div>
         <hr>
         <h4><strong>ประชาสัมพันธ์</strong></h4>

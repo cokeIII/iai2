@@ -17,10 +17,9 @@
     if (empty($_SESSION["id_card"])) {
         header("location: logout.php");
     }
-    $id_card = $_SESSION["id_card"];
     $sql = "select *,cr.status as crstatus from course_regis cr
     inner join course c on c.course_id = cr.course_id
-    where  cr.id_card = '$id_card'";
+    ";
     $res = mysqli_query($conn, $sql);
     ?>
     <div class="container mt-top-menu">
@@ -39,7 +38,8 @@
                         <td><?php echo $row["crstatus"]; ?></td>
                         <td>
                             <?php if ($row["crstatus"] == "wait") {
-                                echo '<button class="btn btn-danger btnCanCourse" course_id="' . $row["course_id"] . '">ยกเลิก</button>';
+                                echo '<button class="btn btn-success btnCanCourse" course_id="' . $row["course_id"] . '">ยืนยัน</button>';
+                                echo '<button class="btn btn-danger btnCanCourse ml-1" course_id="' . $row["course_id"] . '">ยกเลิก</button>';
                             } ?>
                         </td>
                     </tr>

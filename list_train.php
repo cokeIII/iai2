@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <h5 class="card-title key"><?php echo $row["course_name"]; ?></h5>
                             <div class="row">
-                                <a href="#" class="btn btn-info col-md-4">รายละเอียด</a>
+                                <a href="detail_course.php" class="btn btn-info col-md-4">รายละเอียด</a>
                                 <form action="course_regis.php" method="post" class="col-md-4">
                                     <input type="hidden" name="course_id" value="<?php echo $row["course_id"]; ?>">
                                     <button class="btn btn-primary" type="submit" course_id="<?php echo $row["course_id"]; ?>">ลงทะเบียน</button>

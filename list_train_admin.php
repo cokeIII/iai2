@@ -36,7 +36,7 @@
                         <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title key"><?php echo $row["course_name"]; ?></h5>
-                            <a href="#" class="btn btn-primary">รายละเอียด</a>
+                            <a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-primary">รายละเอียด</a>
                             <a href="edit_train.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-warning">แก้ไข</a>
                             <button type="button" course_id="<?php echo $row["course_id"]; ?>" class="btn btn-danger btnDelCourse">ลบ</button>
                         </div>

@@ -17,10 +17,14 @@ $sql = "insert into course_regis
 )
 ";
 
-$res = mysqli_query($conn,$sql);
+$res = mysqli_query($conn, $sql);
 
-if($res) {
-    header("location: list_train_regis.php");
+if ($res) {
+    if ($_SESSION["status"] != "user") {
+        header("location: list_train_regis_admin.php");
+    } else {
+        header("location: list_train_regis.php");
+    }
 } else {
     echo $sql;
     header("location: error-page.php?text-error=ลงทะเบียนผิดพลาด กรุณาลองใหม่อีกครั้ง");
