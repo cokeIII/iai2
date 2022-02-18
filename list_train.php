@@ -8,6 +8,11 @@
     .wh-card {
         width: 350px !important;
     }
+
+    .hide-data {
+        visibility: hidden;
+        display: none;
+    }
 </style>
 
 <body class="bg-grays">
@@ -39,6 +44,14 @@
                     <div class="card wh-card col-md-3.5 m-1 card-data">
                         <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap">
                         <div class="card-body">
+                            <div class="key hide-data"><?php echo $row["target"]; ?></div>
+                            <div class="key hide-data"><?php echo $row["number_trainees"]; ?></div>
+                            <div class="key hide-data"><?php echo $row["expenses"]; ?></div>
+                            <div class="key hide-data"><?php echo $row["start_date"]; ?></div>
+                            <div class="key hide-data"><?php echo $row["end_date"]; ?></div>
+                            <div class="key hide-data"><?php echo $row["location"]; ?></div>
+                            <div class="key hide-data"><?php echo $row["payment_details"]; ?></div>
+
                             <h5 class="card-title key"><?php echo $row["course_name"]; ?></h5>
                             <div class="row">
                                 <a href="detail_course.php" class="btn btn-info col-md-4">รายละเอียด</a>

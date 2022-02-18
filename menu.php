@@ -2,7 +2,7 @@
 session_start();
 header('Content-Type: text/html; charset=UTF-8');
 ?>
-<nav class="navbar navbar-expand-lg navbar-light color-primary fixed-top">
+<nav class="navbar navbar-dark navbar-expand-lg navbar-light color-primary fixed-top">
   <a class="navbar-brand" href="#">IAI</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,8 +10,8 @@ header('Content-Type: text/html; charset=UTF-8');
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php"><i class="fa-solid fa-house"></i> Home <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php"><i class="fa-solid fa-house"></i> Home</a>
       </li>
       <?php if (!empty($_SESSION["status"])) { ?>
         <?php if ($_SESSION["status"] == "user") { ?>
@@ -36,6 +36,7 @@ header('Content-Type: text/html; charset=UTF-8');
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="list_train_admin.php"> <i class="fa-solid fa-clipboard-list"></i> รายการอบรม</a>
               <a class="dropdown-item" href="list_train_regis_admin.php"> <i class="fa-solid fa-clipboard-list"></i> รายการที่ลงทะเบียน</a>
+              <a class="dropdown-item" href="course_table.php"> <i class="fa-solid fa-table"></i> จัดการตารางอบรม</a>
             </div>
           </li>
         <?php } ?>

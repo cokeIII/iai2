@@ -38,7 +38,7 @@
                         <td><?php echo $row["crstatus"]; ?></td>
                         <td>
                             <?php if ($row["crstatus"] == "wait") {
-                                echo '<button class="btn btn-success btnCanCourse" course_id="' . $row["course_id"] . '">ยืนยัน</button>';
+                                echo '<button class="btn btn-success btnConCourse" course_id="' . $row["course_id"] . '" id_card="' . $row["id_card"] . '">ยืนยัน</button>';
                                 echo '<button class="btn btn-danger btnCanCourse ml-1" course_id="' . $row["course_id"] . '">ยกเลิก</button>';
                             } ?>
                         </td>
@@ -64,6 +64,23 @@
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     $.redirect('course_cancle.php', {
+                        'course_id': course_id
+                    });
+                }
+            })
+        })
+        $(".btnConCourse").click(function() {
+            let course_id = $(this).attr("course_id")
+            let id_card = $(this).attr("id_card")
+            Swal.fire({
+                title: 'ยืนยันการลงทะเบียน ?',
+                showCancelButton: true,
+                confirmButtonText: 'ยืนยัน',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    $.redirect('course_confirm.php', {
+                        'id_card': id_card,
                         'course_id': course_id
                     });
                 }

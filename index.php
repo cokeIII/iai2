@@ -6,7 +6,7 @@
 </head>
 <style>
     .wh-card {
-        width: 350px !important;
+        max-width: 350px !important;
     }
 </style>
 
@@ -49,9 +49,9 @@
         <div class="slider regular demo ">
             <?php while ($row = mysqli_fetch_array($res)) { ?>
                 <div class="card wh-card">
-                    <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap">
+                    <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap" height="150">
                     <div class="card-body">
-                        <h5 class="card-title"><?php echo $row["course_name"]; ?></h5>
+                        <h5 class="card-title text-truncate"><?php echo $row["course_name"]; ?></h5>
                         <a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-primary">รายละเอียด</a>
                     </div>
                 </div>
@@ -63,7 +63,7 @@
             <div class="card-body shadow">
                 <div class="row mt-3 border shadow">
                     <div class="col-md-4 text-center p-2">
-                        <img src="img/p1.JPG" alt="" width="360" height="230" class="rounded">
+                        <img src="img/p1.JPG" alt="" width="auto" height="230" class="rounded">
                     </div>
                     <div class="col-md-8 p-2">
                         <h4>

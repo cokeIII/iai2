@@ -38,7 +38,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-9">
-                        <img src="file_uploads/img/<?php echo $row["pic"] ?>" alt="" width="auto" height="450">
+                        <img src="file_uploads/img/<?php echo $row["pic"] ?>" alt="" class="img-fluid" height="450">
                         <hr>
                         <div class="row">
                             <div class="col-md-6">
