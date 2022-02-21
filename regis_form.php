@@ -189,49 +189,49 @@
         $(document).on('submit', '#form-login', function() {
             event.preventDefault()
             $.ajax({
-                    type: "POST",
-                    url: "login_SQL.php",
-                    data: {
-                        username: $("#username").val(),
-                        passwordLogin: $("#passwordLogin").val()
-                    },
-                    success: function(result) {
-                        if (result == "user") {
-                            window.location.href = 'index.php'
-                        }else if(result == "admin"){
-                            window.location.href = 'index.php'
-                        } else {
-                            Swal.fire({
-                                // position: 'top-end',
-                                icon: 'error',
-                                title: 'เข้าสู่ระบบไม่สำเร็จ',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                        }
+                type: "POST",
+                url: "login_SQL.php",
+                data: {
+                    username: $("#username").val(),
+                    passwordLogin: $("#passwordLogin").val()
+                },
+                success: function(result) {
+                    if (result == "user") {
+                        window.location.href = 'index.php'
+                    } else if (result == "admin") {
+                        window.location.href = 'index.php'
+                    } else {
+                        Swal.fire({
+                            // position: 'top-end',
+                            icon: 'error',
+                            title: 'เข้าสู่ระบบไม่สำเร็จ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
                     }
-                });
+                }
+            });
         })
         $(document).on('submit', '#form-regis', function() {
             event.preventDefault()
             var formData = {
-                'id_card':$('#id_card').val(),
-                'email':$('#email').val(),
-                'password':$('#password').val(),
-                'prefix':$('#prefix').val(),
-                'first_name_th':$('#first_name_th').val(),
-                'last_name_th':$('#last_name_th').val(),
-                'first_name':$('#first_name').val(),
-                'last_name':$('#last_name').val(),
-                'phone':$('#phone').val(),
-                'birthday':$('#birthday').val(),
-                'education_level':$('#education_level').val(),
-                'major':$('#major').val(),
-                'work_experience':$('#work_experience').val(),
-                'organization':$('#organization').val(),
-                'industry':$('#industry').val(),
-                'job_position':$('#job_position').val(),
-                'department':$('#department').val()
+                'id_card': $('#id_card').val(),
+                'email': $('#email').val(),
+                'password': $('#password').val(),
+                'prefix': $('#prefix').val(),
+                'first_name_th': $('#first_name_th').val(),
+                'last_name_th': $('#last_name_th').val(),
+                'first_name': $('#first_name').val(),
+                'last_name': $('#last_name').val(),
+                'phone': $('#phone').val(),
+                'birthday': $('#birthday').val(),
+                'education_level': $('#education_level').val(),
+                'major': $('#major').val(),
+                'work_experience': $('#work_experience').val(),
+                'organization': $('#organization').val(),
+                'industry': $('#industry').val(),
+                'job_position': $('#job_position').val(),
+                'department': $('#department').val()
             }
             console.log(formData)
             if (!Script_checkID($("#id_card").val())) {

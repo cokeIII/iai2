@@ -27,8 +27,12 @@
     <?php
     require_once "menu.php";
     require_once "function.php";
-    $id_card = $_SESSION["id_card"];
-    $status = $_SESSION["status"];
+    $id_card = "";
+    $status = "";
+    if (!empty($_SESSION["id_card"])) {
+        $id_card = $_SESSION["id_card"];
+        $status = $_SESSION["status"];
+    }
     $course_id = $_GET["course_id"];
     $sql = "select * from course where course_id ='$course_id'";
     $res = mysqli_query($conn, $sql);
@@ -61,10 +65,12 @@
 
                     </div>
                     <div class="col-md-3">
-                        <form action="course_regis.php" method="post" class="col-md-4">
-                            <input type="hidden" name="course_id" value="<?php echo $row["course_id"]; ?>">
-                            <button class="btn btn-primary btn-lg" type="submit" course_id="<?php echo $row["course_id"]; ?>">ลงทะเบียน</button>
-                        </form>
+                        <?php if (!empty($_SESSION["id_card"])) { ?>
+                            <form action="course_regis.php" method="post" class="col-md-4">
+                                <input type="hidden" name="course_id" value="<?php echo $row["course_id"]; ?>">
+                                <button class="btn btn-primary btn-lg" type="submit" course_id="<?php echo $row["course_id"]; ?>">ลงทะเบียน</button>
+                            </form>
+                        <?php } ?>
                         <div class="box mt-3 p-1">
                             <?php echo DateTimeDiff($row["start_date"], $row["end_date"]) . " ชั่วโมง "; ?><i class="fa-solid fa-clock-rotate-left float-right"></i>
                             <hr>
@@ -97,12 +103,12 @@
                                 <td><?php echo $rowTable["time_start"]; ?></td>
                                 <td><?php echo $rowTable["time_end"]; ?></td>
                                 <td><?php echo $rowTable["activity"]; ?></td>
-                                <td><?php if (checkPass($id_card, $course_id) == "confirmed" || $status == "admin") { ?>
-                                        <a target="_blank" href="<?php echo $rowTable["link_doc"]; ?>">เอกสาร</a>
+                                <td><?php if (checkPass($id_card, $course_id) == "confirmed" || checkPass($id_card, $course_id) == "pass" || $status == "admin") { ?>
+                                        <a class="linkDoc" target="_blank" time_id="<?php echo $rowTable["time_id"]; ?>" href="<?php echo $rowTable["link_doc"]; ?>">เอกสาร</a>
                                     <?php } ?>
                                 </td>
-                                <td><?php if (checkPass($id_card, $course_id) == "confirmed" || $status == "admin") { ?>
-                                        <a target="_blank" href="video.php?course_id=<?php echo $course_id; ?>">วิดีโอ</a>
+                                <td><?php if (checkPass($id_card, $course_id) == "confirmed" || checkPass($id_card, $course_id) == "pass" || $status == "admin") { ?>
+                                        <a target="_blank" href="video.php?time_id=<?php echo $rowTable["time_id"];; ?>">วิดีโอ</a>
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -118,6 +124,19 @@
 <?php require_once "setFoot.php"; ?>
 <script>
     $(document).ready(function() {
+        $(".linkDoc").click(function() {
+            $.ajax({
+                type: "POST",
+                url: "log_user_SQL.php",
+                data: {
+                    time_id: $(this).attr('time_id'),
+                    id_card: '<?php echo $id_card; ?>',
+                    detail: 'เปิดเอกสาร',
+                },
+                success: function(result) {
 
+                }
+            });
+        })
     });
 </script>

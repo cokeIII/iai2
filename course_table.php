@@ -20,7 +20,7 @@
     ?>
     <div class="container mt-top-menu">
         <h3>รายการอบรม</h3>
-        <table id="list_course" class="table table-striped">
+        <table id="list_course" class="table">
             <thead>
                 <th>ลำดับ</th>
                 <th>ชื่อรายการ</th>

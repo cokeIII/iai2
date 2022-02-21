@@ -51,7 +51,7 @@
                         <td><?php echo $rowTable["time_end"]; ?></td>
                         <td><?php echo $rowTable["activity"]; ?></td>
                         <td><a target="_blank" href="<?php echo $rowTable["link_doc"]; ?>">เอกสาร</a></td>
-                        <td><a target="_blank" href="video.php?course_id=<?php echo $course_id; ?>">วิดีโอ</a></td>
+                        <td><a target="_blank" href="video.php?time_id=<?php echo $rowTable["time_id"]; ?>">วิดีโอ</a></td>
                         <td><a class="btn btn-danger" href="del_time.php?time_id=<?php echo $rowTable["time_id"]; ?>&course_id=<?php echo $rowTable["course_id"]; ?>"><i class="fa-solid fa-trash-can"></i></a></td>
                     </tr>
                 <?php } ?>

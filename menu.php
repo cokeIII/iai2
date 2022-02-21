@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 header('Content-Type: text/html; charset=UTF-8');
 ?>
@@ -38,6 +38,11 @@ header('Content-Type: text/html; charset=UTF-8');
               <a class="dropdown-item" href="list_train_regis_admin.php"> <i class="fa-solid fa-clipboard-list"></i> รายการที่ลงทะเบียน</a>
               <a class="dropdown-item" href="course_table.php"> <i class="fa-solid fa-table"></i> จัดการตารางอบรม</a>
             </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="all_course.php">
+              <i class="fa-solid fa-user-check"></i> ตรวจสอบการเข้าอบรม
+            </a>
           </li>
         <?php } ?>
       <?php } ?>

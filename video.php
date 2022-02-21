@@ -13,6 +13,32 @@
     .wh-card {
         width: 350px !important;
     }
+
+    html {
+        overflow: auto;
+    }
+
+    html,
+    body,
+    div,
+    iframe {
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+        border: none;
+    }
+
+    iframe {
+        display: block;
+        width: 100%;
+        border: none;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    body {
+        margin: 0;
+    }
 </style>
 
 <body class="bg-grays">
@@ -22,22 +48,31 @@
         header("location: logout.php");
     }
     $id_card = $_SESSION["id_card"];
-    $course_id = $_GET["course_id"];
-    $sql = "select * from time_table where course_id = '$course_id'";
+    $time_id = $_GET["time_id"];
+    $sql = "select * from time_table where time_id = '$time_id'";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($res);
     ?>
     <div class="container mt-top-menu">
-        <!-- HTML5 Video -->
-        <div class="card mt-5">
-            <div class="card-body">
-                <?php echo $row["link_video"];?>
-            </div>
-        </div>
+        <?php echo $row["link_video"]; ?>
     </div>
 </body>
 
 </html>
 <?php require_once "setFoot.php"; ?>
 <script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: "log_user_SQL.php",
+            data: {
+                time_id: '<?php echo $time_id; ?>',
+                id_card: '<?php echo $id_card; ?>',
+                detail: 'ดูวิดีโอ',
+            },
+            success: function(result) {
+
+            }
+        });
+    })
 </script>

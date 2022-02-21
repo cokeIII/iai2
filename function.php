@@ -80,3 +80,18 @@ function checkPass($id_card,$course_id){
     $row = mysqli_fetch_array($res);
     return $row["status"];
 }
+
+function getNameCourse($course_id){
+    global $conn;
+    $sql = "select course_name from course where course_id = '$course_id'";
+    $res = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_array($res);
+    return $row["course_name"];
+}
+function getNameUser($id_card){
+    global $conn;
+    $sql = "select * from users where id_card = '$id_card'";
+    $res = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_array($res);
+    return $row["prefix"].$row["first_name_th"]." ".$row["last_name_th"];
+}
