@@ -42,7 +42,7 @@
             <div class="row">
                 <?php while ($row = mysqli_fetch_array($res)) { ?>
                     <div class="card wh-card col-md-3.5 m-1 card-data">
-                        <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap">
+                        <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap" height="150">
                         <div class="card-body">
                             <div class="key hide-data"><?php echo $row["target"]; ?></div>
                             <div class="key hide-data"><?php echo $row["number_trainees"]; ?></div>
@@ -52,9 +52,9 @@
                             <div class="key hide-data"><?php echo $row["location"]; ?></div>
                             <div class="key hide-data"><?php echo $row["payment_details"]; ?></div>
 
-                            <h5 class="card-title key"><?php echo $row["course_name"]; ?></h5>
+                            <h5 class="card-title text-truncate"><?php echo $row["course_name"]; ?></h5>
                             <div class="row">
-                                <a href="detail_course.php" class="btn btn-info col-md-4">รายละเอียด</a>
+                                <a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-info col-md-4">รายละเอียด</a>
                                 <form action="course_regis.php" method="post" class="col-md-4">
                                     <input type="hidden" name="course_id" value="<?php echo $row["course_id"]; ?>">
                                     <button class="btn btn-primary" type="submit" course_id="<?php echo $row["course_id"]; ?>">ลงทะเบียน</button>

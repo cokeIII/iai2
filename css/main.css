@@ -8,7 +8,10 @@
 }
 
 .bg-grays {
-    background-color: rgb(228, 228, 228);
+    background-image: url("../img/city.png");
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
 }
 
 .color-primary a:link {
@@ -30,3 +33,8 @@
 .box-register {
     background-color: #eef1f7;
 }
+
+
+/* body {
+    background-image: url("../img/city.png");
+} */

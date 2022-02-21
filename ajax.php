@@ -20,6 +20,16 @@ if ($_POST["act"] == "changePass") {
     } else {
         echo "fail";
     }
+} else if ($_POST["act"] == "changePassAdmin") {
+    $id_card = $_POST["id_card"];
+    $new_password = md5($_POST["new_password"]);
+    $sql = "update users set password = '$new_password' where id_card = '$id_card'";
+    $res = mysqli_query($conn, $sql);
+    if ($res) {
+        echo "success";
+    } else {
+        echo "fail";
+    }
 } else if ($_POST["act"] == "changePassEmp") {
     $id_card = $_POST["id_card"];
     $new_password = md5($_POST["new_password"]);

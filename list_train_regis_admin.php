@@ -23,9 +23,11 @@
     $res = mysqli_query($conn, $sql);
     ?>
     <div class="container mt-top-menu">
-        <table id="course_regis">
+        <table id="course_regis" class="table table-striped">
             <thead>
+                <th>รหัสบัตรประชาชน</th>
                 <th>ชื่อรายการอบรม</th>
+                <th>รายละเอียด</th>
                 <th>วันที่</th>
                 <th>สถานะ</th>
                 <th></th>
@@ -33,7 +35,9 @@
             <tbody>
                 <?php while ($row = mysqli_fetch_array($res)) { ?>
                     <tr>
-                        <td width="50%"><?php echo $row["course_name"]; ?></td>
+                        <td><?php echo '<a target="_blank" href="profile_admin.php?id_card=' . $row["id_card"] . '">' . $row["id_card"] . ''; ?></td>
+                        <td width="30%"><?php echo $row["course_name"]; ?></td>
+                        <td><a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="">รายละเอียด</a></td>
                         <td><?php echo $row["time_stamp"]; ?></td>
                         <td><?php echo $row["crstatus"]; ?></td>
                         <td>

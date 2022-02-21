@@ -27,6 +27,8 @@
     <?php
     require_once "menu.php";
     require_once "function.php";
+    $id_card = $_SESSION["id_card"];
+    $status = $_SESSION["status"];
     $course_id = $_GET["course_id"];
     $sql = "select * from course where course_id ='$course_id'";
     $res = mysqli_query($conn, $sql);
@@ -71,6 +73,42 @@
                     </div>
                 </div>
                 <hr>
+                <h3>ตารางเวลา</h3>
+                <?php
+                $sqlTable = "select * from time_table where course_id='$course_id'";
+                $resTable = mysqli_query($conn, $sqlTable);
+
+                ?>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>วัน</th>
+                            <th>เวลาเริ่ม</th>
+                            <th>เวลาจบ</th>
+                            <th>กิจกรรม</th>
+                            <th>Link เอกสาร</th>
+                            <th>Link วิดีโอ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($rowTable = mysqli_fetch_array($resTable)) {  ?>
+                            <tr>
+                                <td><?php echo $rowTable["days"]; ?></td>
+                                <td><?php echo $rowTable["time_start"]; ?></td>
+                                <td><?php echo $rowTable["time_end"]; ?></td>
+                                <td><?php echo $rowTable["activity"]; ?></td>
+                                <td><?php if (checkPass($id_card, $course_id) == "confirmed" || $status == "admin") { ?>
+                                        <a target="_blank" href="<?php echo $rowTable["link_doc"]; ?>">เอกสาร</a>
+                                    <?php } ?>
+                                </td>
+                                <td><?php if (checkPass($id_card, $course_id) == "confirmed" || $status == "admin") { ?>
+                                        <a target="_blank" href="video.php?course_id=<?php echo $course_id; ?>">วิดีโอ</a>
+                                    <?php } ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

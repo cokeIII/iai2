@@ -35,10 +35,10 @@
             </div>
         </div>
         <div id="carddata">
-            <div class="row">
+            <div class="row mt-5">
                 <?php while ($row = mysqli_fetch_array($res)) { ?>
                     <div class="card wh-card col-md-3.5 m-1 card-data">
-                        <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap">
+                        <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap" height="150">
                         <div class="card-body">
                             <div class="key hide-data"><?php echo $row["target"]; ?></div>
                             <div class="key hide-data"><?php echo $row["number_trainees"]; ?></div>
@@ -48,7 +48,7 @@
                             <div class="key hide-data"><?php echo $row["location"]; ?></div>
                             <div class="key hide-data"><?php echo $row["payment_details"]; ?></div>
 
-                            <h5 class="card-title key"><?php echo $row["course_name"]; ?></h5>
+                            <h5 class="card-title text-truncate"><?php echo $row["course_name"]; ?></h5>
                             <a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-primary">รายละเอียด</a>
                             <a href="edit_train.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-warning">แก้ไข</a>
                             <button type="button" course_id="<?php echo $row["course_id"]; ?>" class="btn btn-danger btnDelCourse">ลบ</button>

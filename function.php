@@ -72,3 +72,11 @@ function countPerson($course_id) {
     $row = mysqli_fetch_array($res);
     return $row["countPerson"];
 }
+
+function checkPass($id_card,$course_id){
+    global $conn;
+    $sql = "select * from course_regis where id_card = '$id_card' and course_id='$course_id'";
+    $res = mysqli_query($conn,$sql);
+    $row = mysqli_fetch_array($res);
+    return $row["status"];
+}
