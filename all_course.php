@@ -22,7 +22,7 @@
     <div class="container mt-top-menu">
         <div class="card">
             <div class="card-body">
-                <table id="course_all" class="table table-striped">
+                <table id="course_all" class="table table-striped" width="100%">
                     <thead>
                         <th>ชื่อรายการอบรม</th>
                         <th>รายละเอียด</th>
@@ -50,6 +50,8 @@
 <?php require_once "setFoot.php"; ?>
 <script>
     $(document).ready(function() {
-        $("#course_all").DataTable();
+        $("#course_all").DataTable({
+            "scrollX": true
+        });
     });
 </script>

@@ -85,7 +85,7 @@
                 $resTable = mysqli_query($conn, $sqlTable);
 
                 ?>
-                <table class="table table-striped table-bordered">
+                <table id="timeTable" class=" table table-striped table-bordered" width="100%">
                     <thead>
                         <tr>
                             <th>วัน</th>
@@ -103,13 +103,17 @@
                                 <td><?php echo $rowTable["time_start"]; ?></td>
                                 <td><?php echo $rowTable["time_end"]; ?></td>
                                 <td><?php echo $rowTable["activity"]; ?></td>
-                                <td><?php if (checkPass($id_card, $course_id) == "confirmed" || checkPass($id_card, $course_id) == "pass" || $status == "admin") { ?>
-                                        <a class="linkDoc" target="_blank" time_id="<?php echo $rowTable["time_id"]; ?>" href="<?php echo $rowTable["link_doc"]; ?>">เอกสาร</a>
-                                    <?php } ?>
+                                <td><?php if (!empty($rowTable["link_doc"])) {
+                                        if (checkPass($id_card, $course_id) == "confirmed" || checkPass($id_card, $course_id) == "pass" || checkPass($id_card, $course_id) == "nopass" || $status == "admin") { ?>
+                                            <a class="linkDoc" target="_blank" time_id="<?php echo $rowTable["time_id"]; ?>" href="<?php echo $rowTable["link_doc"]; ?>">เอกสาร</a>
+                                    <?php }
+                                    } ?>
                                 </td>
-                                <td><?php if (checkPass($id_card, $course_id) == "confirmed" || checkPass($id_card, $course_id) == "pass" || $status == "admin") { ?>
-                                        <a target="_blank" href="video.php?time_id=<?php echo $rowTable["time_id"];; ?>">วิดีโอ</a>
-                                    <?php } ?>
+                                <td><?php if (!empty($rowTable["link_video"])) {
+                                        if (checkPass($id_card, $course_id) == "confirmed" || checkPass($id_card, $course_id) == "pass" || checkPass($id_card, $course_id) == "nopass" || $status == "admin") { ?>
+                                            <a target="_blank" href="video.php?time_id=<?php echo $rowTable["time_id"]; ?>&course_id=<?php echo $course_id; ?>">วิดีโอ</a>
+                                    <?php }
+                                    } ?>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -124,6 +128,9 @@
 <?php require_once "setFoot.php"; ?>
 <script>
     $(document).ready(function() {
+        $("#timeTable").DataTable({
+            "scrollX": true
+        });
         $(".linkDoc").click(function() {
             $.ajax({
                 type: "POST",
@@ -131,6 +138,7 @@
                 data: {
                     time_id: $(this).attr('time_id'),
                     id_card: '<?php echo $id_card; ?>',
+                    status: '<?php echo checkPass($id_card, $course_id); ?>',
                     detail: 'เปิดเอกสาร',
                 },
                 success: function(result) {

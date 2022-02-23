@@ -20,18 +20,22 @@
     ?>
     <div class="container mt-top-menu">
         <h3>รายการอบรม</h3>
-        <table id="list_course" class="table">
-            <thead>
-                <th>ลำดับ</th>
-                <th>ชื่อรายการ</th>
-                <th>วันที่อบรม</th>
-                <th>สถานที่</th>
-                <th></th>
-            </thead>
-            <tbody>
+        <div class="card">
+            <div class="card-body">
+                <table id="list_course" class="table table-striped">
+                    <thead>
+                        <th>ลำดับ</th>
+                        <th>ชื่อรายการ</th>
+                        <th>วันที่อบรม</th>
+                        <th>สถานที่</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
 
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 

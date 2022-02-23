@@ -23,33 +23,37 @@
     $res = mysqli_query($conn, $sql);
     ?>
     <div class="container mt-top-menu">
-        <table id="course_regis" class="table table-striped">
-            <thead>
-                <th>รหัสบัตรประชาชน</th>
-                <th>ชื่อรายการอบรม</th>
-                <th>รายละเอียด</th>
-                <th>วันที่</th>
-                <th>สถานะ</th>
-                <th></th>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_array($res)) { ?>
-                    <tr>
-                        <td><?php echo '<a target="_blank" href="profile_admin.php?id_card=' . $row["id_card"] . '">' . $row["id_card"] . ''; ?></td>
-                        <td width="30%"><?php echo $row["course_name"]; ?></td>
-                        <td><a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="">รายละเอียด</a></td>
-                        <td><?php echo $row["time_stamp"]; ?></td>
-                        <td><?php echo $row["crstatus"]; ?></td>
-                        <td>
-                            <?php if ($row["crstatus"] == "wait") {
-                                echo '<button class="btn btn-success btnConCourse" course_id="' . $row["course_id"] . '" id_card="' . $row["id_card"] . '">ยืนยัน</button>';
-                                echo '<button class="btn btn-danger btnCanCourse ml-1" course_id="' . $row["course_id"] . '">ยกเลิก</button>';
-                            } ?>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+        <div class="card">
+            <div class="card-body">
+                <table id="course_regis" class="table table-striped">
+                    <thead>
+                        <th>รหัสบัตรประชาชน</th>
+                        <th>ชื่อรายการอบรม</th>
+                        <th>รายละเอียด</th>
+                        <th>วันที่</th>
+                        <th>สถานะ</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = mysqli_fetch_array($res)) { ?>
+                            <tr>
+                                <td><?php echo '<a target="_blank" href="profile_admin.php?id_card=' . $row["id_card"] . '">' . $row["id_card"] . ''; ?></td>
+                                <td width="30%"><?php echo $row["course_name"]; ?></td>
+                                <td><a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="">รายละเอียด</a></td>
+                                <td><?php echo $row["time_stamp"]; ?></td>
+                                <td><?php echo $row["crstatus"]; ?></td>
+                                <td>
+                                    <?php if ($row["crstatus"] == "wait") {
+                                        echo '<button class="btn btn-success btnConCourse" course_id="' . $row["course_id"] . '" id_card="' . $row["id_card"] . '">ยืนยัน</button>';
+                                        echo '<button class="btn btn-danger btnCanCourse ml-1" course_id="' . $row["course_id"] . '">ยกเลิก</button>';
+                                    } ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 
@@ -57,7 +61,9 @@
 <?php require_once "setFoot.php"; ?>
 <script>
     $(document).ready(function() {
-        $("#course_regis").DataTable();
+        $("#course_regis").DataTable({
+            "scrollX": true
+        });
         $(".btnCanCourse").click(function() {
             let course_id = $(this).attr("course_id")
             Swal.fire({

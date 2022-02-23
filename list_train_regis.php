@@ -24,30 +24,39 @@
     $res = mysqli_query($conn, $sql);
     ?>
     <div class="container mt-top-menu">
-        <table id="course_regis" class="table table-striped">
-            <thead>
-                <th>ชื่อรายการอบรม</th>
-                <th>รายละเอียด</th>
-                <th>วันที่</th>
-                <th>สถานะ</th>
-                <th></th>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_array($res)) { ?>
-                    <tr>
-                        <td width="45%"><?php echo $row["course_name"]; ?></td>
-                        <td><a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="">รายละเอียด</a></td>
-                        <td><?php echo $row["time_stamp"]; ?></td>
-                        <td><?php echo $row["crstatus"]; ?></td>
-                        <td>
-                            <?php if ($row["crstatus"] == "wait") {
-                                echo '<button class="btn btn-danger btnCanCourse" course_id="' . $row["course_id"] . '">ยกเลิก</button>';
-                            } ?>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+        <div class="card">
+            <div class="card-body">
+                <table id="course_regis" class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th>ชื่อรายการอบรม</th>
+                            <th>รายละเอียด</th>
+                            <th>วันที่</th>
+                            <th>สถานะ</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = mysqli_fetch_array($res)) { ?>
+                            <tr>
+                                <td width="45%"><?php echo $row["course_name"]; ?></td>
+                                <td><a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="">รายละเอียด</a></td>
+                                <td><?php echo $row["time_stamp"]; ?></td>
+                                <td><?php echo 
+                                (checkPass($id_card, $row["course_id"]) == "pass" ? "<span class='text-success'>ผ่าน</span>" : 
+                                (checkPass($id_card, $row["course_id"]) == "confirmed" ? "เข้าร่วมการอบรม" : 
+                                (checkPass($id_card, $row["course_id"]) == "wait"?"<span class='text-warning'>รอการยืนยัน</span>":"<span class='text-danger'>ไม่ผ่าน</span>"))); ?></td>
+                                <td>
+                                    <?php if ($row["crstatus"] == "wait") {
+                                        echo '<button class="btn btn-danger btnCanCourse" course_id="' . $row["course_id"] . '">ยกเลิก</button>';
+                                    } ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 
@@ -55,7 +64,9 @@
 <?php require_once "setFoot.php"; ?>
 <script>
     $(document).ready(function() {
-        $("#course_regis").DataTable();
+        $("#course_regis").DataTable({
+            "scrollX": true
+        });
         $(".btnCanCourse").click(function() {
             let course_id = $(this).attr("course_id")
             Swal.fire({

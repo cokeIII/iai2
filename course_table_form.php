@@ -31,33 +31,46 @@
     ?>
     <div class="container mt-top-menu">
         <h3>จัดตาราง <?php echo $row["course_name"]; ?></h3>
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>วัน</th>
-                    <th>เวลาเริ่ม</th>
-                    <th>เวลาจบ</th>
-                    <th>กิจกรรม</th>
-                    <th>Link เอกสาร</th>
-                    <th>Link วิดีโอ (iframe)</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($rowTable = mysqli_fetch_array($resTable)) {  ?>
-                    <tr>
-                        <td><?php echo $rowTable["days"]; ?></td>
-                        <td><?php echo $rowTable["time_start"]; ?></td>
-                        <td><?php echo $rowTable["time_end"]; ?></td>
-                        <td><?php echo $rowTable["activity"]; ?></td>
-                        <td><a target="_blank" href="<?php echo $rowTable["link_doc"]; ?>">เอกสาร</a></td>
-                        <td><a target="_blank" href="video.php?time_id=<?php echo $rowTable["time_id"]; ?>">วิดีโอ</a></td>
-                        <td><a class="btn btn-danger" href="del_time.php?time_id=<?php echo $rowTable["time_id"]; ?>&course_id=<?php echo $rowTable["course_id"]; ?>"><i class="fa-solid fa-trash-can"></i></a></td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-        <div class="card shadow">
+        <div class="card">
+            <div class="card-body">
+                <table id="timeTable" class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th>วัน</th>
+                            <th>เวลาเริ่ม</th>
+                            <th>เวลาจบ</th>
+                            <th>กิจกรรม</th>
+                            <th>Link เอกสาร</th>
+                            <th>Link วิดีโอ (iframe)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($rowTable = mysqli_fetch_array($resTable)) {  ?>
+                            <tr>
+                                <td><?php echo $rowTable["days"]; ?></td>
+                                <td><?php echo $rowTable["time_start"]; ?></td>
+                                <td><?php echo $rowTable["time_end"]; ?></td>
+                                <td><?php echo $rowTable["activity"]; ?></td>
+                                <td>
+                                    <?php if (!empty($rowTable["link_doc"])) { ?>
+                                        <a target="_blank" href="<?php echo $rowTable["link_doc"]; ?>">เอกสาร</a>
+                                    <?php } ?>
+                                </td>
+                                <td>
+                                    <?php if (!empty($rowTable["link_video"])) { ?>
+                                        <a target="_blank" href="video.php?time_id=<?php echo $rowTable["time_id"]; ?>&course_id=<?php echo $course_id; ?>">วิดีโอ</a>
+                                    <?php } ?>
+                                </td>
+                                <td><a class="btn btn-danger" href="del_time.php?time_id=<?php echo $rowTable["time_id"]; ?>&course_id=<?php echo $rowTable["course_id"]; ?>"><i class="fa-solid fa-trash-can"></i></a></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <div class="card shadow mt-3">
             <div class="card-body">
                 <button class="btn btn-primary btnAddList"><i class="fa-solid fa-plus"></i> เพิ่มรายการ</button>
                 <form action="course_table_sql.php" method="post">
@@ -100,6 +113,9 @@
 </html>
 <?php require_once "setFoot.php"; ?>
 <script>
+    $("#timeTable").DataTable({
+        "scrollX": true
+    });
     $(".btnAddList").click(function() {
         $(".box-table-time").append(
             '<div class="row mt-2">' +

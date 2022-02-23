@@ -49,6 +49,7 @@
     }
     $id_card = $_SESSION["id_card"];
     $time_id = $_GET["time_id"];
+    $course_id = $_GET["course_id"];
     $sql = "select * from time_table where time_id = '$time_id'";
     $res = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($res);
@@ -68,6 +69,7 @@
             data: {
                 time_id: '<?php echo $time_id; ?>',
                 id_card: '<?php echo $id_card; ?>',
+                status: '<?php echo checkPass($id_card, $course_id); ?>',
                 detail: 'ดูวิดีโอ',
             },
             success: function(result) {
