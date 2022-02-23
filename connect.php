@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
-$database = "iai2";
+$password = "chontech!2020";
+$database = "iai";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$database);
