@@ -44,7 +44,9 @@
         <h1><?php echo getNameCourse($course_id); ?></h1>
         <div class="card">
             <div class="card-body">
-                <?php checkTime($id_card, $course_id); ?>
+                <a href="" class="float-right" data-toggle="modal" data-target="#detailColor">
+                    ความหมายสี
+                </a>
                 <h3>ประวัติการเข้ากิจกรรมของ <span id="nameUser"><?php echo getNameUser($id_card); ?></span></h3>
                 <table id="log_user" class="table table-striped" width="100%">
                     <thead>
@@ -83,6 +85,40 @@
 </body>
 
 </html>
+<!-- Modal -->
+<div class="modal fade" id="detailColor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detailColorModalLabel">ความหมายสี</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row border">
+                    <div class="col-4 p-4 bg-red"></div>
+                    <div class="col-8 p-3">สีแดง มีลิงค์เอกสารหรือวิดีโอแต่ไม่ได้กดลิงค์เข้าไปดู</div>
+                </div>
+                <div class="row border">
+                    <div class="col-4 p-4 bg-yellow"></div>
+                    <div class="col-8 p-3">สีเหลือง เวลาในการดูวิดีโอใกล้กันมากเกินไป</div>
+                </div>
+                <div class="row border">
+                    <div class="col-4 p-4 bg-green"></div>
+                    <div class="col-8 p-3">สีเขียว เข้ากิจกรรมปกติ</div>
+                </div>
+                <div class="row border">
+                    <div class="col-4 p-4 bg-blue"></div>
+                    <div class="col-8 p-3">สีน้ำเงิน ไม่มีลิงค์เอกสารหรือวิดีโอ</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?php require_once "setFoot.php"; ?>
 <script>
     $(document).ready(function() {

@@ -50,7 +50,7 @@
                                 <td><?php echo $row["prefix"] . $row["first_name_th"] . " " . $row["last_name_th"]; ?></td>
                                 <td><?php echo $row["organization"]; ?></td>
                                 <td class="<?php echo checkColor($dataTime); ?>"><?php echo calPercent($row["id_card"], $row["course_id"]) . ' %'; ?></td>
-                                <td><?php echo (checkPass($id_card, $course_id) == "pass" ? "<span class='text-success'>ผ่าน</span>" : (checkPass($id_card, $course_id) == "confirmed" ? "เข้าร่วมการอบรม" : "<span class='text-danger'>ไม่ผ่าน</span>")); ?></td>
+                                <td><?php echo (checkPass($row["id_card"], $course_id) == "pass" ? "<span class='text-success'>ผ่าน</span>" : (checkPass($row["id_card"], $course_id) == "confirmed" ? "เข้าร่วมการอบรม" : "<span class='text-danger'>ไม่ผ่าน</span>")); ?></td>
                                 <td><a href="log_user.php?id_card=<?php echo $row["id_card"]; ?>&course_id=<?php echo $course_id; ?>">ดูประวัติ</a></td>
                             </tr>
                         <?php } ?>

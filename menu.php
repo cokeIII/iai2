@@ -44,8 +44,14 @@ header('Content-Type: text/html; charset=UTF-8');
               <i class="fa-solid fa-user-check"></i> ตรวจสอบการเข้าอบรม
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="list_course_cer.php"><i class="fa-solid fa-certificate"></i> ตั้งค่าใบวุฒิบัตร</a>
+          </li>
         <?php } ?>
       <?php } ?>
+      <li class="nav-item">
+        <a class="nav-link" href="cer_form.php"><i class="fa-solid fa-certificate"></i> รับใบวุฒิบัตร</a>
+      </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <?php if (empty($_SESSION["status"])) { ?>
