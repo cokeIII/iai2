@@ -49,7 +49,7 @@ if ($_POST["act"] == "changePass") {
     $techlist["data"][$i]["start_end_date"] = "";
     $techlist["data"][$i]["location"] = "";
     $techlist["data"][$i]["btnTable"] = "";
-
+    $techlist["data"][$i]["btnLecturer"] = "";
     $res = mysqli_query($conn, $sql);
 
     while ($row = mysqli_fetch_assoc($res)) {
@@ -58,7 +58,31 @@ if ($_POST["act"] == "changePass") {
         $techlist["data"][$i]["start_end_date"] = "เริ่ม " . $row["start_date"] . "<br> จบ" . $row["end_date"];
         $techlist["data"][$i]["location"] = $row["location"];
         $techlist["data"][$i]["btnTable"] = '<a href="course_table_form.php?course_id=' . $row["course_id"] . '"><button class="btn btn-primary btnTable" course_id="' . $row["course_id"] . '">จัดตาราง</button></a>';
+        $techlist["data"][$i]["btnLecturer"] = '<a href="add_lec.php?course_id=' . $row["course_id"] . '" class="btn btn-info btnLecturer">เพิ่มวิทยากร</a>';
         $i++;
+    }
+    echo json_encode($techlist, JSON_UNESCAPED_UNICODE);
+} else if ($_POST["act"] == "get_course_lec") {
+    $id_card = $_POST["id_card"];
+    $sql = "select * from course ";
+    $i = 0;
+
+    $techlist["data"][$i]["no"] = "ไม่มีข้อมูล";
+    $techlist["data"][$i]["course_name"] = "";
+    $techlist["data"][$i]["start_end_date"] = "";
+    $techlist["data"][$i]["location"] = "";
+    $techlist["data"][$i]["btnTable"] = "";
+    $res = mysqli_query($conn, $sql);
+
+    while ($row = mysqli_fetch_assoc($res)) {
+        if (in_array($id_card, explode(",", $row["lecturer"]))) {
+            $techlist["data"][$i]["no"] = $i + 1;
+            $techlist["data"][$i]["course_name"] = $row["course_name"];
+            $techlist["data"][$i]["start_end_date"] = "เริ่ม " . $row["start_date"] . "<br> จบ" . $row["end_date"];
+            $techlist["data"][$i]["location"] = $row["location"];
+            $techlist["data"][$i]["btnTable"] = '<a href="course_table_form.php?course_id=' . $row["course_id"] . '"><button class="btn btn-primary btnTable" course_id="' . $row["course_id"] . '">จัดตาราง</button></a>';
+            $i++;
+        }
     }
     echo json_encode($techlist, JSON_UNESCAPED_UNICODE);
 }

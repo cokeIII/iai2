@@ -1,5 +1,6 @@
 <?php
 require_once "connect.php";
+session_start();
 $id_card = $_POST["id_card"];
 $prefix = $_POST["prefix"];
 $first_name = $_POST["first_name"];
@@ -20,21 +21,20 @@ $picOld = $rowCheck["pic"];
 if (empty($password)) {
     $password = $rowCheck["password"];
 }
-if (!empty($pic)) {
 
-    $pic_name = "";
-    if (!empty($pic["size"])) {
-        $target_dir = "file_uploads/lecturer/";
-        $pic_name = $id_card . "_lecturer.jpg";
-        $target_file = $target_dir . $pic_name;
-        $uploadOk = 1;
-        if ($uploadOk == 0) {
+
+$pic_name = "";
+if (!empty($pic["size"])) {
+    $target_dir = "file_uploads/lecturer/";
+    $pic_name = $id_card . "_lecturer.jpg";
+    $target_file = $target_dir . $pic_name;
+    $uploadOk = 1;
+    if ($uploadOk == 0) {
+    } else {
+        if (move_uploaded_file($pic["tmp_name"], $target_file)) {
         } else {
-            if (move_uploaded_file($pic["tmp_name"], $target_file)) {
-            } else {
-                header("location: error-page.php?text-error=อัพโหลดรูปไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
-                return;
-            }
+            header("location: error-page.php?text-error=อัพโหลดรูปไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+            return;
         }
     }
 } else {
@@ -59,8 +59,11 @@ where id_card = '$id_card'
 $res = mysqli_query($conn, $sql);
 
 if ($res) {
-    // echo $sql;
-    header("location: lecturer.php");
+    if ($_SESSION["status"] == "lecturer") {
+        header("location: lecturer_form_edit.php?id_card=$id_card");
+    } else if ($_SESSION["status"] == "admin") {
+        header("location: lecturer.php");
+    }
 } else {
     // echo $sql;
     header("location: error-page.php?text-error=แก้ไขรายการไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");

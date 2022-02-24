@@ -33,7 +33,16 @@ header('Content-Type: text/html; charset=UTF-8');
         <?php } else if ($_SESSION["status"] == "registrar") { ?>
 
         <?php } else if ($_SESSION["status"] == "lecturer") { ?>
-
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="course_table_lec.php">
+              <i class="fa-solid fa-table"></i> จัดการตารางอบรม
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="all_course_lec.php">
+              <i class="fa-solid fa-user-check"></i> ตรวจสอบการเข้าอบรม
+            </a>
+          </li>
         <?php } else if ($_SESSION["status"] == "admin") { ?>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,16 +86,22 @@ header('Content-Type: text/html; charset=UTF-8');
         <a href="regis_form.php"><button class="btn bg-light my-2 my-sm-0" type="button">สมัคร</button></a>
         <a href="login_form.php"><button class="btn bg-orange my-2 my-sm-0 ml-3" type="button">เข้าสู่ระบบ</button></a>
       <?php } else { ?>
-        <?php echo '<a href="profile.php">' . $_SESSION["username"] . '</a>' ?>
+        <?php
+        if ($_SESSION["status"] == "admin" || $_SESSION["status"] == "user") {
+          echo '<a href="profile.php">' . $_SESSION["username"] . '</a>';
+        } else if ($_SESSION["status"] == "lecturer") {
+          echo '<a href="lecturer_form_edit.php?id_card=' . $_SESSION["id_card"] . '">' . $_SESSION["username"] . '</a>';
+        }
+        ?>
         <?php
         $sumNoti = 0;
         $id_card = $_SESSION["id_card"];
-        $sqlNoti ="select * from log_alert where status = 'u'";
+        $sqlNoti = "select * from log_alert where status = 'u'";
         $status_user = $_SESSION["status"];
         if ($status_user == "registrar") {
           $sqlNoti = "select * from log_alert where status = 'r'";
         } else if ($status_user == "lecturer") {
-          $sqlNoti = "select * from log_alert where status = 'l'";
+          $sqlNoti = "select * from log_alert where status = 'l' and id_card = '$id_card'";
         } else if ($status_user == "admin") {
           $sqlNoti = "select * from log_alert where status = 'r'";
         }
@@ -115,13 +130,21 @@ header('Content-Type: text/html; charset=UTF-8');
                 if (!in_array($id_card, $arrRead)) {
                   $noRead++;
                   if ($noRead <= 8) {
+                    if ($status_user == "admin" || $status_user == "registrar") {
               ?>
-                    <a status="<?php echo $rowNoti["status"]; ?>" id_card="<?php echo $rowNoti["id_card"]; ?>" id="<?php echo $rowNoti["log_id"]; ?>" href="#<?php echo $rowNoti["log_id"]; ?>" class="dropdown-item read">
-                      <i class="fas fa-envelope mr-2"></i> <?php echo getNameUser($rowNoti["id_card"]) . "<br>" . $rowNoti["detail"]; ?>
-                      <span class="float-right text-muted text-sm"><?php echo $rowNoti["time_stamp"]; ?></span>
-                    </a>
-                    <div class="dropdown-divider mt-4"></div>
+                      <a status="<?php echo $rowNoti["status"]; ?>" id_card="<?php echo $rowNoti["id_card"]; ?>" id="<?php echo $rowNoti["log_id"]; ?>" href="#<?php echo $rowNoti["log_id"]; ?>" class="dropdown-item read">
+                        <i class="fas fa-envelope mr-2"></i> <?php echo getNameUser($rowNoti["id_card"]) . "<br>" . $rowNoti["detail"]; ?>
+                        <span class="float-right text-muted text-sm"><?php echo $rowNoti["time_stamp"]; ?></span>
+                      </a>
+                      <div class="dropdown-divider mt-4"></div>
+                    <?php } else if ($status_user == "lecturer") { ?>
+                      <a status="<?php echo $rowNoti["status"]; ?>" course_name="<?php echo getNameCourse($rowNoti["course_id"]); ?>" id_card="<?php echo $rowNoti["id_card"]; ?>" course_id="<?php echo $rowNoti["course_id"]; ?>" id="<?php echo $rowNoti["log_id"]; ?>" href="#<?php echo $rowNoti["log_id"]; ?>" class="dropdown-item read">
+                        <i class="fas fa-envelope mr-2"></i> <?php echo getNameCourse($rowNoti["course_id"]) . "<br>" . $rowNoti["detail"]; ?>
+                        <span class="float-right text-muted text-sm"><?php echo $rowNoti["time_stamp"]; ?></span>
+                      </a>
+                      <div class="dropdown-divider mt-4"></div>
               <?php }
+                  }
                 }
               }
               ?>
@@ -142,6 +165,7 @@ header('Content-Type: text/html; charset=UTF-8');
       let log_id = $(this).attr("id")
       let id_card = $(this).attr("id_card")
       let status = $(this).attr("status")
+      let course_name = $(this).attr("course_name")
       let id_card_user = '<?php echo $id_card; ?>'
 
       $.ajax({
@@ -153,9 +177,16 @@ header('Content-Type: text/html; charset=UTF-8');
           status: status
         },
         success: function(result) {
-          $.redirect('list_user.php', {
-            'id_card': id_card,
-          });
+          console.log(status)
+          if (status == "a" || status == "r") {
+            $.redirect('list_user.php', {
+              'id_card': id_card,
+            });
+          } else if (status == "l") {
+            $.redirect('course_table_lec.php', {
+              'course_name': course_name,
+            });
+          }
         }
       });
     })

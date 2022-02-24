@@ -24,6 +24,16 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="user">ผู้ใช้งาน</option>
+                                        <option value="registrar">เจ้าหน้าที่</option>
+                                        <option value="lecturer">วิทยากร</option>
+                                        <option value="admin">ผู้ดูแลระบบ</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="username">รหัสบัตรประชาชน </label>
                                     <input type="text" class="form-control" id="username" placeholder="Enter username">
                                 </div>
@@ -54,12 +64,17 @@
                 url: "login_SQL.php",
                 data: {
                     username: $("#username").val(),
-                    passwordLogin: $("#passwordLogin").val()
+                    passwordLogin: $("#passwordLogin").val(),
+                    status: $("#status").val()
                 },
                 success: function(result) {
                     if (result == "user") {
                         window.location.href = 'index.php'
                     } else if (result == "admin") {
+                        window.location.href = 'index.php'
+                    } else if (result == "registrar") {
+                        window.location.href = 'index.php'
+                    } else if (result == "lecturer") {
                         window.location.href = 'index.php'
                     } else {
                         Swal.fire({

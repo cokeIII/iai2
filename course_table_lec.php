@@ -17,18 +17,21 @@
     if (empty($_SESSION["id_card"])) {
         header("location: logout.php");
     }
+    $search = "";
+    if (!empty($_POST["course_name"])) {
+        $search = $_POST["course_name"];
+    }
     ?>
     <div class="container mt-top-menu">
         <h3>รายการอบรม</h3>
         <div class="card">
             <div class="card-body">
-                <table id="list_course" class="table table-striped">
+                <table id="list_course" class="table table-striped" width="100%">
                     <thead>
                         <th>ลำดับ</th>
                         <th>ชื่อรายการ</th>
                         <th>วันที่อบรม</th>
                         <th>สถานที่</th>
-                        <th></th>
                         <th></th>
                     </thead>
                     <tbody>
@@ -45,6 +48,9 @@
 <script>
     $(document).ready(function() {
         $('#list_course').DataTable({
+            "oSearch": {
+                "sSearch": '<?php echo $search; ?>'
+            },
             "paging": true,
             "lengthChange": true,
             "searching": true,
@@ -59,7 +65,8 @@
                 "url": "ajax.php",
                 "type": "POST",
                 "data": function(d) {
-                    d.act = "get_course"
+                    d.act = "get_course_lec"
+                    d.id_card = '<?php echo $id_card; ?>'
                 }
             },
             'processing': true,
@@ -77,9 +84,6 @@
                 },
                 {
                     "data": "btnTable"
-                },
-                {
-                    "data": "btnLecturer"
                 }
             ],
             "language": {

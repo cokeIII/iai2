@@ -20,4 +20,12 @@ if ($status == "r") {
     } else {
         echo $sql;
     }
+} else if ($status == "l") {
+    $sql = "update log_alert set status_read='$id_card' where log_id = '$log_id'";
+    $res = mysqli_query($conn, $sql);
+    if ($res) {
+        echo "OK";
+    } else {
+        echo $sql;
+    }
 }
