@@ -18,18 +18,20 @@ date_default_timezone_set("asia/bangkok");
 $course_id = $_POST["course_id"];
 $id_card = $_POST["id_card"];
 
-$sqlC = "select * from trained where course_id='$train_id' and train_code != '' and id_card = '$id_card'";
+$sqlC = "select * from trained where course_id='$course_id' and train_code != '' and id_card = '$id_card'";
 $resC = mysqli_query($conn, $sqlC);
 $numC = mysqli_num_rows($resC);
 $rowC = mysqli_fetch_array($resC);
-echo  $numC;
+
+$sqlT = "select * from course where course_id='$course_id'";
+$resT = mysqli_query($conn, $sqlT);
+$rowT = mysqli_fetch_array($resT);
+$cer_pic = $rowT["cer_pic"];
+
 if ($numC <= 0) {
-    $sqlT = "select * from course where course_id='$course_id'";
-    $resT = mysqli_query($conn, $sqlT);
-    $rowT = mysqli_fetch_array($resT);
+
     $cer_min = $rowT["cer_min"];
     $cer_max = $rowT["cer_max"];
-    $cer_pic = $rowT["cer_pic"];
 
     $sqlCode = "select max(train_code) as currentCode from trained where course_id='$course_id'";
     $resCode = mysqli_query($conn, $sqlCode);
@@ -46,7 +48,6 @@ if ($numC <= 0) {
     if (!empty($train_code)) {
         $sqlIn = "insert into trained (course_id,train_code,id_card) value('$course_id','$train_code','$id_card')";
         mysqli_query($conn, $sqlIn);
-        echo "<br>" . $sqlIn;
     } else {
         header("location:error-page.php?text-error=ยังไม่สามารถพิมพ์ใบวุฒิบัตรได้");
     }

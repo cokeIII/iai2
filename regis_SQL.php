@@ -58,9 +58,21 @@ $sql = "insert into users (
     '$department',
     'user'
 )";
-$res = mysqli_query($conn,$sql);
-if($res){
+$res = mysqli_query($conn, $sql);
+if ($res) {
     echo "OK";
+    $sqlAlert = "insert into log_alert (
+        id_card,
+        detail,
+        status,
+        status_read
+    ) values(
+        '$id_card',
+        'สมัครสมาชิกใหม่',
+        'r',
+        ''
+    )";
+    mysqli_query($conn, $sqlAlert);
 } else {
     echo $sql;
 }

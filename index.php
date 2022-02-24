@@ -28,15 +28,17 @@
                 <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner text-center">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="img/slide1.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="img/slide2.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="img/download.svg" alt="Third slide">
-                </div>
+                <?php
+                $sqlSlide = "select * from pic_slide";
+                $resSlide = mysqli_query($conn, $sqlSlide);
+                $i = 0;
+                while ($rowSlide = mysqli_fetch_array($resSlide)) {
+                ?>
+                    <div class="carousel-item <?php echo ($i == 0 ? "active" : ""); ?>">
+                        <img class="d-block w-100" src="file_uploads/img_slide/<?php echo $rowSlide["pic_path"]; ?>" />
+                    </div>
+                <?php $i++;
+                } ?>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -103,33 +105,74 @@
         <h4><strong>ประชาสัมพันธ์</strong></h4>
         <div class="card">
             <div class="card-body shadow">
-                <div class="row mt-3 border shadow">
-                    <div class="col-md-4 text-center p-2">
-                        <img src="img/p1.JPG" alt="" class="d-block w-100">
-                    </div>
-                    <div class="col-md-8 p-2">
-                        <h4>
-                            <strong>
-                                <a href="#">
-                                    รมว.สุชาติ มอบกรมพัฒนาฝีมือแรงงาน จับมือเครือข่ายเทรนช่างแอร์แก้โลกร้อน
-                                </a>
-                            </strong>
-                        </h4>
-                        <div class="row mt-4">
-                            <i class="fa-solid fa-clock ml-3"> 12 ก.พ. 2565</i>
+                <?php
+                $sqlBull = "select * from public_relations";
+                $resBull = mysqli_query($conn, $sqlBull);
+                while ($rowBull = mysqli_fetch_array($resBull)) {
+                ?>
+                    <div class="row mt-3 border shadow">
+                        <div class="col-md-4 text-center p-2">
+                            <img src="file_uploads/bullhorn/<?php echo json_decode($rowBull["pic_path"])[0]; ?>" alt="" class="d-block w-100">
+                        </div>
+                        <div class="col-md-8 p-2">
+                            <h4>
+                                <strong>
+                                    <a class="btnDetail" id="<?php echo $rowBull["pub_id"]; ?>" topic="<?php echo $rowBull["topic"]; ?>" detail="<?php echo $rowBull["detail"]; ?>" pic_path='<?php echo $rowBull["pic_path"]; ?>' href="#<?php echo $rowBull["pub_id"]; ?>">
+                                        <?php echo $rowBull["topic"]; ?>
+                                    </a>
+                                </strong>
+                            </h4>
+                            <div class="row mt-4">
+                                <i class="fa-solid fa-clock ml-3"> <?php echo $rowBull["time_stamp"]; ?></i>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <hr>
+                    <hr>
+                <?php } ?>
             </div>
         </div>
     </div>
 </body>
+<div class="modal fade " id="picBull" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="picBullLabel">รายละเอียด</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="picBullShow">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </html>
 <?php require_once "setFoot.php"; ?>
 <script>
     $(document).ready(function() {
+        $(".btnDetail").click(function() {
+            let pic_path = JSON.parse($(this).attr("pic_path"))
+            let detail = $(this).attr("detail")
+            let topic = $(this).attr("topic")
+            $res = '<h3>' + topic + '</h3>' + '<hr>' + detail + '<hr><div class="row">';
+            pic_path.forEach(element => {
+                $res +=
+                    '<div class="col-md-4">' +
+                    '<img class="d-block w-100" src="file_uploads/bullhorn/' + element + '">' +
+                    '</div>'
+            });
+            $res += '</div>';
+            $("#picBullShow").html($res)
+            $('#picBull').modal('show');
+        })
 
     });
 </script>

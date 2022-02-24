@@ -6,5 +6,7 @@
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/slick.css">
 <link rel="stylesheet" href="css/slick-theme.css">
+<script src="js/jquery-3.6.0.js"></script>
+
 <script src="https://kit.fontawesome.com/6cea8d99ef.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
