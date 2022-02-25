@@ -80,7 +80,7 @@ header('Content-Type: text/html; charset=UTF-8');
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="list_user.php"> <i class="fa-solid fa-user"></i> ผู้ใช้งาน</a>
-              <a class="dropdown-item" href="registrar.php"> <i class="fa-solid fa-user"></i> เจ้าหน้าที่ทะเบียน</a>
+              <!-- <a class="dropdown-item" href="registrar.php"> <i class="fa-solid fa-user"></i> เจ้าหน้าที่ทะเบียน</a> -->
               <a class="dropdown-item" href="lecturer.php"> <i class="fa-solid fa-user"></i> วิทยากร</a>
             </div>
           </li>
