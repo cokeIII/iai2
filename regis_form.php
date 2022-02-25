@@ -235,7 +235,7 @@
         })
         $(document).on('submit', '#form-regis', function() {
             event.preventDefault()
-            
+
             // var formData = {
             //     'id_card': $('#id_card').val(),
             //     'email': $('#email').val(),
@@ -259,6 +259,7 @@
             formData.append('id_card', $('#id_card').val());
             formData.append('email', $('#email').val());
             formData.append('password', $('#password').val());
+            formData.append('prefix', $('#prefix').val());
             formData.append('first_name_th', $('#first_name_th').val());
             formData.append('last_name_th', $('#last_name_th').val());
             formData.append('first_name', $('#first_name').val());
