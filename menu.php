@@ -30,6 +30,15 @@ header('Content-Type: text/html; charset=UTF-8');
               <a class="dropdown-item" href="list_train_regis.php"> <i class="fa-solid fa-clipboard-list"></i> รายการที่ลงทะเบียน</a>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="receipt.php"><i class="fa-solid fa-receipt"></i> รับใบเสร็จ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cer_form.php"><i class="fa-solid fa-certificate"></i> รับใบวุฒิบัตร</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="bank.php"><i class="fa-solid fa-money-check-dollar"></i> แจ้งการชำระเงิน</a>
+          </li>
         <?php } else if ($_SESSION["status"] == "registrar") { ?>
 
         <?php } else if ($_SESSION["status"] == "lecturer") { ?>
@@ -56,7 +65,7 @@ header('Content-Type: text/html; charset=UTF-8');
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link" href="all_course.php">
-              <i class="fa-solid fa-user-check"></i> ตรวจสอบการเข้าอบรม
+              <i class="fa-solid fa-user-check"></i> การเข้าอบรม
             </a>
           </li>
           <li class="nav-item">
@@ -75,11 +84,12 @@ header('Content-Type: text/html; charset=UTF-8');
               <a class="dropdown-item" href="lecturer.php"> <i class="fa-solid fa-user"></i> วิทยากร</a>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="receipt_admin.php"><i class="fa-solid fa-receipt"></i> ใบเสร็จ</a>
+          </li>
         <?php } ?>
       <?php } ?>
-      <li class="nav-item">
-        <a class="nav-link" href="cer_form.php"><i class="fa-solid fa-certificate"></i> รับใบวุฒิบัตร</a>
-      </li>
+
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <?php if (empty($_SESSION["status"])) { ?>

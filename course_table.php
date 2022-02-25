@@ -80,6 +80,9 @@
                 },
                 {
                     "data": "btnLecturer"
+                },
+                {
+                    "data": "btnForm"
                 }
             ],
             "language": {
