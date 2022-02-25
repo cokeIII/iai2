@@ -1,7 +1,7 @@
 <?php
 require_once "connect.php";
 $targetDir = "file_uploads/bullhorn/";
-$allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'svg', 'JPG');
+$allowTypes = array('jpg', 'png', 'jpeg', 'svg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
 $fileNames = array_filter($_FILES['pic_path']['name']);
 $topic = $_POST["topic"];
 $detail = $_POST["detail"];
