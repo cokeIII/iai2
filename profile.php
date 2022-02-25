@@ -164,7 +164,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="pic">รูปประจำตัว</label>
-                                    <input type="file" name="pic" id="">
+                                    <input type="file" name="pic" id="pic">
                                 </div>
                             </div>
                         </div>
