@@ -1,5 +1,7 @@
 <?php
 require_once "connect.php";
+header('Content-Type: text/html; charset=UTF-8');
+
 $targetDir = "file_uploads/img_slide/";
 $allowTypes = array('jpg', 'png', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
 $fileNames = array_filter($_FILES['pic_slide']['name']);

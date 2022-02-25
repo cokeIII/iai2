@@ -1,5 +1,6 @@
 <?php
 require_once "connect.php";
+header('Content-Type: text/html; charset=UTF-8');
 
 $id_card = $_POST["id_card"];
 $course_id = $_POST["course_id"];
