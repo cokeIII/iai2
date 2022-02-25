@@ -194,7 +194,7 @@
             "scrollX": true
         });
         $(".btnDelSlide").click(function() {
-            let pub_id = $(this).attr("pub_id")
+            let pic_id = $(this).attr("pic_id")
             Swal.fire({
                 title: 'ลบรูปภาพ ?',
                 showCancelButton: true,
@@ -203,7 +203,7 @@
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
                     $.redirect('pic_slide_del.php', {
-                        'pub_id': pub_id,
+                        'pic_id': pic_id,
                     });
                 }
             })
