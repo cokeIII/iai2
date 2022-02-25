@@ -9,4 +9,4 @@
 <script src="js/jquery-3.6.0.js"></script>
 
 <script src="https://kit.fontawesome.com/6cea8d99ef.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="http://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">

@@ -4,4 +4,4 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="js/jquery.redirect.js"></script>
 <script src="js/jquery.searcher.js"></script>
-<script src="http://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
