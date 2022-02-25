@@ -52,7 +52,7 @@
             <div class="col-md-8">
                 <h3>Sign Up</h3>
                 <div class="box-register p-5 mt-3 shadow">
-                    <form id="form-regis" method="POST">
+                    <form id="form-regis" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -182,6 +182,12 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="pic">รูปประจำตัว</label>
+                                    <input type="file" name="pic" id="">
+                                </div>
+                            </div>
                         </div>
                         <button type="submit" class="btn bg-orange float-right">สมัครสมาชิก</button>
                     </form>
@@ -229,26 +235,26 @@
         })
         $(document).on('submit', '#form-regis', function() {
             event.preventDefault()
-            var formData = {
-                'id_card': $('#id_card').val(),
-                'email': $('#email').val(),
-                'password': $('#password').val(),
-                'prefix': $('#prefix').val(),
-                'first_name_th': $('#first_name_th').val(),
-                'last_name_th': $('#last_name_th').val(),
-                'first_name': $('#first_name').val(),
-                'last_name': $('#last_name').val(),
-                'phone': $('#phone').val(),
-                'birthday': $('#birthday').val(),
-                'education_level': $('#education_level').val(),
-                'major': $('#major').val(),
-                'work_experience': $('#work_experience').val(),
-                'organization': $('#organization').val(),
-                'industry': $('#industry').val(),
-                'job_position': $('#job_position').val(),
-                'department': $('#department').val()
-            }
-            console.log(formData)
+            // var formData = {
+            //     'id_card': $('#id_card').val(),
+            //     'email': $('#email').val(),
+            //     'password': $('#password').val(),
+            //     'prefix': $('#prefix').val(),
+            //     'first_name_th': $('#first_name_th').val(),
+            //     'last_name_th': $('#last_name_th').val(),
+            //     'first_name': $('#first_name').val(),
+            //     'last_name': $('#last_name').val(),
+            //     'phone': $('#phone').val(),
+            //     'birthday': $('#birthday').val(),
+            //     'education_level': $('#education_level').val(),
+            //     'major': $('#major').val(),
+            //     'work_experience': $('#work_experience').val(),
+            //     'organization': $('#organization').val(),
+            //     'industry': $('#industry').val(),
+            //     'job_position': $('#job_position').val(),
+            //     'department': $('#department').val()
+            // }
+            var formData = new FormData(this)
             if (!Script_checkID($("#id_card").val())) {
                 return Swal.fire({
                     // position: 'top-end',
@@ -283,7 +289,10 @@
                                 timer: 1500
                             })
                         }
-                    }
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
                 });
             } else {
                 Swal.fire({

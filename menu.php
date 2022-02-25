@@ -170,13 +170,13 @@ header('Content-Type: text/html; charset=UTF-8');
 </nav>
 <script>
   $(document).ready(function() {
-    $(".count-alert").html('<?php echo $noRead; ?>')
+    $(".count-alert").html('<?php echo (empty($noRead) ? "" : $noRead); ?>')
     $(".read").click(function() {
       let log_id = $(this).attr("id")
       let id_card = $(this).attr("id_card")
       let status = $(this).attr("status")
       let course_name = $(this).attr("course_name")
-      let id_card_user = '<?php echo $id_card; ?>'
+      let id_card_user = '<?php echo (empty($id_card) ? "" : $id_card); ?>'
 
       $.ajax({
         type: "POST",

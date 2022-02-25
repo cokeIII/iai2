@@ -18,7 +18,22 @@ $organization = $_POST["organization"];
 $industry = $_POST["industry"];
 $job_position = $_POST["job_position"];
 $department = $_POST["department"];
-
+$pic = $_FILES["pic"];
+$pic_name = "";
+if (!empty($pic["size"])) {
+    $target_dir = "file_uploads/user/";
+    $pic_name = $id_card . ".jpg";
+    $target_file = $target_dir . $pic_name;
+    $uploadOk = 1;
+    if ($uploadOk == 0) {
+    } else {
+        if (move_uploaded_file($pic["tmp_name"], $target_file)) {
+        } else {
+            header("location: error-page.php?text-error=อัพโหลดรูปไม่สำเร็จ กรุณาลองใหม่อีกครั้ง");
+            return;
+        }
+    }
+}
 $sql = "insert into users (
     id_card,
     email,
@@ -37,7 +52,8 @@ $sql = "insert into users (
     industry,
     job_position,
     department,
-    status
+    status,
+    pic
 ) value(
     '$id_card',
     '$email',
@@ -56,7 +72,8 @@ $sql = "insert into users (
     '$industry',
     '$job_position',
     '$department',
-    'user'
+    'user',
+    '$pic_name'
 )";
 $res = mysqli_query($conn, $sql);
 if ($res) {
