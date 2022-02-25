@@ -40,7 +40,39 @@ header('Content-Type: text/html; charset=UTF-8');
             <a class="nav-link" href="bank.php"><i class="fa-solid fa-money-check-dollar"></i> แจ้งการชำระเงิน</a>
           </li>
         <?php } else if ($_SESSION["status"] == "registrar") { ?>
-
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-graduation-cap"></i> อบรม
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="list_train_admin.php"> <i class="fa-solid fa-clipboard-list"></i> รายการอบรม</a>
+            <a class="dropdown-item" href="list_train_regis_admin.php"> <i class="fa-solid fa-clipboard-list"></i> รายการที่ลงทะเบียน</a>
+            <a class="dropdown-item" href="course_table.php"> <i class="fa-solid fa-table"></i> จัดการตารางอบรม</a>
+          </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" href="all_course.php">
+              <i class="fa-solid fa-user-check"></i> การเข้าอบรม
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="list_course_cer.php"><i class="fa-solid fa-certificate"></i> ตั้งค่าใบวุฒิบัตร</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="bullhorn.php"><i class="fa-solid fa-bullhorn"></i> ประชาสัมพันธ์</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-user-group"></i> เจ้าหน้าที่ & ผู้ใช้
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="list_user.php"> <i class="fa-solid fa-user"></i> ผู้ใช้งาน</a>
+              <!-- <a class="dropdown-item" href="registrar.php"> <i class="fa-solid fa-user"></i> เจ้าหน้าที่ทะเบียน</a> -->
+              <a class="dropdown-item" href="lecturer.php"> <i class="fa-solid fa-user"></i> วิทยากร</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="receipt_admin.php"><i class="fa-solid fa-receipt"></i> ใบเสร็จ</a>
+          </li>
         <?php } else if ($_SESSION["status"] == "lecturer") { ?>
           <li class="nav-item dropdown">
             <a class="nav-link" href="course_table_lec.php">
@@ -80,7 +112,7 @@ header('Content-Type: text/html; charset=UTF-8');
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="list_user.php"> <i class="fa-solid fa-user"></i> ผู้ใช้งาน</a>
-              <!-- <a class="dropdown-item" href="registrar.php"> <i class="fa-solid fa-user"></i> เจ้าหน้าที่ทะเบียน</a> -->
+              <a class="dropdown-item" href="registrar.php"> <i class="fa-solid fa-user"></i> เจ้าหน้าที่ทะเบียน</a>
               <a class="dropdown-item" href="lecturer.php"> <i class="fa-solid fa-user"></i> วิทยากร</a>
             </div>
           </li>
