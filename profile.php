@@ -309,9 +309,8 @@
             formData.append('department', $('#department').val());
 
             var files = $('#pic')[0].files;
-            console.log(files)
             if (files.length > 0) {
-                formData.append('file', files[0]);
+                formData.append('pic', files[0]);
             }
             if (!Script_checkID($("#id_card").val())) {
                 return Swal.fire({
