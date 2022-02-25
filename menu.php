@@ -133,6 +133,8 @@ header('Content-Type: text/html; charset=UTF-8');
           echo '<a href="profile.php">' . $_SESSION["username"] . '</a>';
         } else if ($_SESSION["status"] == "lecturer") {
           echo '<a href="lecturer_form_edit.php?id_card=' . $_SESSION["id_card"] . '">' . $_SESSION["username"] . '</a>';
+        } else if ($_SESSION["status"] == "registrar") {
+          echo '<a href="registrar_form_edit.php?id_card=' . $_SESSION["id_card"] . '">' . $_SESSION["username"] . '</a>';
         }
         ?>
         <?php
