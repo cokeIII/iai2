@@ -37,8 +37,8 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="number_trainees">จำนวนผู้อบรม <span class="text-danger">*</span></label>
-                            <input name="number_trainees" type="number" class="form-control" id="number_trainees" required>
+                            <label for="number_trainees">จำนวนผู้อบรม</label>
+                            <input name="number_trainees" type="number" class="form-control" id="number_trainees">
                         </div>
                     </div>
                 </div>
@@ -89,6 +89,14 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="detail">รายละเอียดเกี่ยวกับการอบรม</label>
+                            <textarea class="form-control" name="detail" id="detail" cols="30" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="course_file">เอกสารที่เกี่ยวข้องกับการอบรม </label>
@@ -97,7 +105,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="course_file">หลักสูตร</label>
+                            <label for="course_type">หลักสูตร</label>
                             <select name="course_type" id="course_type" class="form-control" required>
                                 <option value="">-- กรุเลือกหลักสูตร --</option>
                                 <?php echo get_CourseType_opt(); ?>
@@ -107,7 +115,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="pic">รูปหน้าปก</label>
-                            <input name="pic" type="file" class="form-control"โ>
+                            <input name="pic" type="file" class="form-control" โ>
                         </div>
                     </div>
                 </div>

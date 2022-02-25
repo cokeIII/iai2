@@ -14,6 +14,7 @@ $close_applications = $_POST["close_applications"];
 $payment_details = $_POST["payment_details"];
 $course_file = $_FILES["course_file"];
 $course_type = $_POST["course_type"];
+$detail = $_POST["detail"];
 $pic = $_FILES["pic"];
 $dateTime = date("Ymdhisa");
 
@@ -61,7 +62,8 @@ $sql = "insert into course
     `course_file`, 
     `course_type`, 
     `pic`,
-    `status`
+    `status`,
+    `detail`
     ) values (
     '$course_name',
     '$target',
@@ -76,7 +78,8 @@ $sql = "insert into course
     '$course_file_name',
     '$course_type',
     '$pic_name',
-    'on'
+    'on',
+    '$detail'
 )
 ";
 

@@ -49,7 +49,9 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h5 class="color-detail"><strong>กลุ่มเป้าหมาย</strong> : <?php echo $row["target"] ?></h5>
-                                <h5><strong>จำนวนผู้อบรม</strong> : <?php echo $row["number_trainees"] ?></h5>
+                                <h5><strong>จำนวนผู้อบรม</strong> :
+                                    <pre><?php echo ($row["number_trainees"] < 1 ? "ไม่ได้ระบุ" : $row["number_trainees"]) ?></pre>
+                                </h5>
                                 <h5 class="color-detail"><strong>ค่าใช้จ่าย(บาท)</strong> : <?php echo $row["expenses"] ?></h5>
                                 <h5><strong>วันที่เริ่มการอบรม</strong> : <?php echo $row["start_date"] ?></h5>
                                 <h5 class="color-detail"><strong>วันที่สิ้นสุดการอบรม</strong> : <?php echo $row["end_date"] ?></h5>
@@ -76,6 +78,11 @@
                             <hr>
                             ผู้ลงทะเบียน <?php echo countPerson($row["course_id"]); ?><i class="fa-solid fa-user-pen float-right"></i>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 border">
+                        <pre><?php echo $row["detail"] ?></pre>
                     </div>
                 </div>
                 <hr>

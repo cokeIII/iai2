@@ -84,9 +84,8 @@
                             <div class="card mb-2">
                                 <img class="card-img-top wh-card" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap">
                                 <div class="card-body">
-                                    <h4 class="card-title text-truncate"><?php echo $row["course_name"]; ?></h4>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                        card's content.</p>
+                                    <h4 class="card-title text-truncate" data-toggle="tooltip" data-placement="top" title="<?php echo $row["course_name"]; ?>"><?php echo $row["course_name"]; ?></h4>
+                                    <p class="card-text text-truncate" ><?php echo $row["detail"]; ?></p>
                                     <a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-primary">รายละเอียด</a>
                                 </div>
                             </div>
