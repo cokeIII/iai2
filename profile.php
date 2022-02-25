@@ -288,7 +288,29 @@
             //     'job_position': $('#job_position').val(),
             //     'department': $('#department').val()
             // }
-            var formData = new FormData(this)
+            // var formData = new FormData(this)
+            var formData = new FormData()
+            formData.append('id_card', $('#id_card').val());
+            formData.append('email', $('#email').val());
+            formData.append('password', $('#password').val());
+            formData.append('first_name_th', $('#first_name_th').val());
+            formData.append('last_name_th', $('#last_name_th').val());
+            formData.append('first_name', $('#first_name').val());
+            formData.append('last_name', $('#last_name').val());
+            formData.append('phone', $('#phone').val());
+            formData.append('birthday', $('#birthday').val());
+            formData.append('education_level', $('#education_level').val());
+            formData.append('major', $('#major').val());
+            formData.append('work_experience', $('#work_experience').val());
+            formData.append('organization', $('#organization').val());
+            formData.append('industry', $('#industry').val());
+            formData.append('job_position', $('#job_position').val());
+            formData.append('department', $('#department').val());
+
+            var files = $('#pic')[0].files;
+            if (files.length > 0) {
+                formData.append('file', files[0]);
+            }
             if (!Script_checkID($("#id_card").val())) {
                 return Swal.fire({
                     // position: 'top-end',
