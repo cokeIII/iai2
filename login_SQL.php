@@ -37,4 +37,17 @@ if ($status == "user" || $status == "admin") {
         echo $sql;
     }
 } else if ($status == "registrar") {
+    $sql = "select * from registrar where id_card = '$username' and password = '$password'";
+    $res = mysqli_query($conn, $sql);
+    $numrow = mysqli_num_rows($res);
+
+    if ($numrow > 0) {
+        $row = mysqli_fetch_array($res);
+        $_SESSION["id_card"] = $row["id_card"];
+        $_SESSION["username"] = $row["first_name"] . " " . $row["last_name"];
+        $_SESSION["status"] = "registrar";
+        echo "registrar";
+    } else {
+        echo $sql;
+    }
 }
