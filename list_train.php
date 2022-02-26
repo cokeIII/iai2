@@ -39,7 +39,7 @@
             </div>
         </div>
         <div id="carddata">
-            <div class="row">
+            <div class="row mt-5">
                 <?php while ($row = mysqli_fetch_array($res)) { ?>
                     <div class="card wh-card col-md-3.5 m-1 card-data">
                         <img class="card-img-top" src="file_uploads/img/<?php echo $row["pic"] ?>" alt="Card image cap" height="150">
