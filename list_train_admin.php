@@ -48,7 +48,7 @@
                             <div class="key hide-data"><?php echo $row["location"]; ?></div>
                             <div class="key hide-data"><?php echo $row["payment_details"]; ?></div>
 
-                            <h5 class="card-title text-truncate" data-toggle="tooltip" data-placement="top" title="<?php echo $row["course_name"]; ?>"><?php echo $row["course_name"]; ?></h5>
+                            <h5 class="key card-title text-truncate" data-toggle="tooltip" data-placement="top" title="<?php echo $row["course_name"]; ?>"><?php echo $row["course_name"]; ?></h5>
                             <a href="detail_course.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-primary">รายละเอียด</a>
                             <a href="edit_train.php?course_id=<?php echo $row["course_id"]; ?>" class="btn btn-warning">แก้ไข</a>
                             <button type="button" course_id="<?php echo $row["course_id"]; ?>" class="btn btn-danger btnDelCourse">ลบ</button>
