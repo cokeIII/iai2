@@ -125,7 +125,7 @@ ob_start(); // Start get HTML code
 <?php
 $html = ob_get_contents();
 $mpdf->WriteHTML($html);
-$taget = "pdf/certificate_1.pdf";
+$taget = "pdf/certificate.pdf";
 $mpdf->Output($taget);
 ob_end_flush();
 echo "<script>window.location.href='$taget';</script>";
